@@ -23,6 +23,12 @@ a+=rotl(~a,7)^rotl(a,11);
 a-=rotl(a,6)^rotl(~a,19);
 return a;}
 
+
+static inline uint64_t checksum( uint64_t*arr,const size_t len){uint64_t res=0;
+for(size_t i=0;i<len;i++)res+=rnd(res+arr[i]);
+return res;
+}
+
 static inline uint64_t range(uint64_t maxval){
 uint64_t a=rnd1();
 return (((unsigned __int128)a)*((unsigned __int128)maxval))>>64;
