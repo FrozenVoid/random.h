@@ -27,7 +27,7 @@ static inline uint64_t range(uint64_t maxval){
 uint64_t a=rnd1();
 return (((unsigned __int128)a)*((unsigned __int128)maxval))>>64;
 }
-static inline uint64_t range32(uint32_t maxval){
+static inline uint32_t range32(uint32_t maxval){
 uint32_t a=(uint32_t)rnd1();
 return (((uint64_t)a)*((uint64_t)maxval))>>32;
 }
