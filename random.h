@@ -5,6 +5,8 @@ rnd(seed) return randomized seed->rndnum
 rnd1() get random 64bit num
 range(max) ^below max(0-max)
 range32(max) same but for 32-bit(faster)
+checksum(u64* arr,len) checksum for array
+stringsum(char* arr,len) checksum for string
 
 */
 #include <stdint.h>
@@ -23,9 +25,17 @@ a+=rotl(~a,7)^rotl(a,11);
 a-=rotl(a,6)^rotl(~a,19);
 return a;}
 
-
+//can be used as hash
 static inline uint64_t checksum( uint64_t*arr,const size_t len){uint64_t res=0;
 for(size_t i=0;i<len;i++)res+=rnd(res+arr[i]);
+return res;
+}
+static inline uint64_t stringsum( char*arr,const size_t len){uint64_t res=0;
+const size_t len8=len/8;
+uint64_t*arr2=(uint64_t*)arr;
+if(len8)res+=checksum(arr2,len8);
+for(size_t i=len8*8;i<len;i++)res+=rnd(res+arr[i]);
+
 return res;
 }
 
