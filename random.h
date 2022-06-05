@@ -1,6 +1,6 @@
 #pragma once
 /*
-
+https://github.com/FrozenVoid/random.h
 rnd(seed) return randomized seed->rndnum
 rnd1() get random 64bit num
 range(max) ^below max(0-max)
