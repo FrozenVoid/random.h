@@ -20,10 +20,10 @@ a-=rotl(a,6)^rotl(~a,19);
 return a;}
 
 static inline uint64_t rnd1(){
-static uint64_t a=17;
-a+=rotl(~a,7)^rotl(a,11);
-a-=rotl(a,6)^rotl(~a,19);
-return a;}
+static uint64_t a=17,b=~1;
+a+=rotl(b,17)^rotl(a,3);
+b+=rotl(a,13)^rotl(b,8);
+return b;}
 
 //can be used as hash
 static inline uint64_t checksum( uint64_t*arr,const size_t len){uint64_t res=0;
