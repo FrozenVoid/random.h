@@ -5,7 +5,7 @@ rnd(seed) return randomized seed->rndnum
 rnd1() get random 64bit num
 range(max) ^below max(0-max)
 range32(max) same but for 32-bit(faster)
-
+rndbias() faster 64bit RNG(fails PractRand 32 gigabytes)
 */
 #include <stdint.h>
 static inline uint64_t rotl(const uint64_t x, int k) {
@@ -25,6 +25,12 @@ a+=rotl(b,17)^rotl(a,3);
 b+=rotl(a,13)^rotl(b,8);
 return b;}
 
+
+static inline uint64_t rndbias(){
+static uint64_t a=17;
+a+=rotl(~a,7)^rotl(a,11);
+a-=rotl(a,6)^rotl(~a,19);
+return a;}
 
 static inline uint64_t range(uint64_t maxval){
 uint64_t a=rnd1();
